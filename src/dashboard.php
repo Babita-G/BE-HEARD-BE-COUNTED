@@ -27,11 +27,7 @@ $contestants = getContestants();
 
     <nav class="navbar">
         <div class="container">
-          <a class="brand" href="#">Voting System</a>
-          <button class="toggler" type="button" 
-            <span class="toggler-icon"></span>
-          </button>
-          <div class="collapse navbar" id="nav">
+       
             <div class="nav">
                 <form action="./backend/useraction.php" method="post">
                     <button type="submit" class="btn btn-primary" name="logout">Logout</button>
@@ -39,17 +35,9 @@ $contestants = getContestants();
             </div>
           </div>
         </div>
-      </nav>
+      
 
-      <?php
-        if(isset($_SESSION['message'])): ?>
-        <div class="alert">
-        <span class="auto">
-            <?php echo $_SESSION['message']; ?>
-            <?php unset($_SESSION['message']) ?>
-        </span>
-    </div>
-    <?php endif; ?>
+     
 
     <section class="bg-image">
         <div class="icon">

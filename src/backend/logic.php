@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+
 
 function register($id, $firstname, $lastname, $email, $password, $age){
     $conn = connect();
@@ -126,9 +126,9 @@ function connect(){
     }
 
     // check if voter has voted
-    function hasVoted($idnumber){
+    function hasVoted($CRN_number){
         $conn = connect();
-        $sql = "SELECT * FROM tbl_users WHERE id = '$idnumber'";
+        $sql = "SELECT * FROM tbl_users WHERE id = '$CRN_number'";
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) > 0){
             $user = mysqli_fetch_assoc($result);

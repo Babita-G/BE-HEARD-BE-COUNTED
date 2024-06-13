@@ -43,12 +43,11 @@ if(isset($_POST['register'])){
     if(empty($id)){
         $validation['idnum'] = "ID number is required";
     }
-    if(strlen($id) < 10){
-        $validation['idnum'] = "ID number must be 10 digits";
+    if(strlen($id) =5){
+        $validation['idnum'] = " CRN number must be of 5 digits";
     }
-    if(strlen($id) > 10){
-        $validation['idnum'] = "ID number must be 10 digits";
-    }
+    
+    
 
     if(verifyEmail($email)){
         $validation['email'] = "Email already exists";
@@ -62,13 +61,10 @@ if(isset($_POST['register'])){
         }
         else{
             $validation['register'] = "Registration failed";
-            header("Location: ../register.php");
+           
         }
     }
-    else{
-        $_SESSION['validation'] = $validation;
-        header("Location: ../register.php");
-    }
+    
 
 }
 
@@ -106,11 +102,7 @@ elseif(isset($_POST['login'])){
             header("Location: ../login.php");
         }
     }
-    else{
-        $_SESSION['validation'] = $validation;
-        header("Location: ../login.php");
-    }
-    
+   
 }
 
 elseif(isset($_POST['logout'])){
