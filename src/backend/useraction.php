@@ -1,135 +1,81 @@
 <?php
-
 include_once './logic.php';
 session_start();
 
 $validation = [];
 
-if(isset($_POST['register'])){
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $age = $_POST['age'];
-    $id = $_POST['idnum'];
-
-    if(empty($firstname)){
-        $validation['firstname'] = "First name is required";
-    }
-    if(empty($lastname)){
-        $validation['lastname'] = "Last name is required";
-    }
-    if(empty($email)){
-        $validation['email'] = "Email is required";
-    }
-    if(empty($password)){
+function validatePassword($password) {
+    global $validation;
+    if (empty($password)) {
         $validation['password'] = "Password is required";
-    }
-
-    if(strlen($password) < 8){
+    } elseif (strlen($password) < 8) {
         $validation['password'] = "Password must be at least 8 characters";
-    }
-
-    if(strlen($password) >= 12){
+    } elseif (strlen($password) > 12) {
         $validation['password'] = "Password must be less than or equal to 12 characters";
     }
-    if(empty($age)){
-        $validation['age'] = "Age is required";
-    }
-
-    if($age < 18){
-        $validation['age'] = "Age must be at least 18 years";
-    }
-    if(empty($id)){
-        $validation['idnum'] = "ID number is required";
-    }
-    if(strlen($id) < 10){
-        $validation['idnum'] = "ID number must be 10 digits";
-    }
-    if(strlen($id) > 10){
-        $validation['idnum'] = "ID number must be 10 digits";
-    }
-
-    if(verifyEmail($email)){
-        $validation['email'] = "Email already exists";
-    }
-
-    if(count($validation) == 0){
-        // register the user
-        if(register($id, $firstname, $lastname, $email, $password, $age)){
-            $_SESSION['message'] = "Registration successful please login";
-            header("Location: ../login.php");
-        }
-        else{
-            $validation['register'] = "Registration failed";
-            header("Location: ../register.php");
-        }
-    }
-    else{
-        $_SESSION['validation'] = $validation;
-        header("Location: ../register.php");
-    }
-
 }
 
-elseif(isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? null;
+    $password = $_POST['password'] ?? null;
 
-    if(empty($email)){
-        $validation['email'] = "Email is required";
-    }
-    if(empty($password)){
-        $validation['password'] = "Password is required";
-    }
+    if (isset($_POST['register'])) {
+        $firstname = $_POST['firstname'] ?? null;
+        $lastname = $_POST['lastname'] ?? null;
+        $age = $_POST['age'] ?? null;
+        $id = $_POST['idnum'] ?? null;
 
-    if(strlen($password) < 8){
-        $validation['password'] = "Password must be at least 8 characters";
-    }
+        if (empty($firstname)) $validation['firstname'] = "First name is required";
+        if (empty($lastname)) $validation['lastname'] = "Last name is required";
+        if (empty($email)) $validation['email'] = "Email is required";
+        if (empty($age)) $validation['age'] = "Age is required";
+        if (empty($id)) $validation['idnum'] = "ID number is required";
+        validatePassword($password);
 
-    if(strlen($password) >= 12){
-        $validation['password'] = "Password must be less than or equal to 12 characters";
-    }
+        if (!empty($age) && $age < 18) $validation['age'] = "Age must be at least 18 years";
+        if (!empty($id) && strlen($id) != 5) $validation['idnum'] = "CRN number must be 5 digits";
 
-    if(count($validation) == 0){
-        // login the user
-        if(login($email, $password)){
-            if($_SESSION['role'] == 'admin'){
-                header("Location: ../admin/dashboard.php");
-            }else{
-                header("Location: ../dashboard.php");
+        if (verifyEmail($email)) $validation['email'] = "Email already exists";
+
+        if (empty($validation)) {
+            if (register($id, $firstname, $lastname, $email, $password, $age)) {
+                $_SESSION['message'] = "Registration successful, please login";
+                header("Location: ../login.php");
+                exit();
+            } else {
+                $validation['register'] = "Registration failed";
             }
         }
-        else{
-            $validation['login'] = "Login failed";
-            $_SESSION['validation'] = $validation;
-            header("Location: ../login.php");
+    } elseif (isset($_POST['login'])) {
+        if (empty($email)) $validation['email'] = "Email is required";
+        validatePassword($password);
+
+        if (empty($validation)) {
+            if (login($email, $password)) {
+                $redirectUrl = ($_SESSION['role'] == 'admin') ? '../admin/dashboard.php' : '../dashboard.php';
+                header("Location: $redirectUrl");
+                exit();
+            } else {
+                $validation['login'] = "Login failed";
+                $_SESSION['validation'] = $validation;
+                header("Location: ../login.php");
+                exit();
+            }
         }
-    }
-    else{
-        $_SESSION['validation'] = $validation;
-        header("Location: ../login.php");
-    }
-    
-}
-
-elseif(isset($_POST['logout'])){
-    logout();
-}
-
-elseif(isset($_POST['vote'])){
-    $voteeId = $_POST['idnumber'];
-    $voterId = $_POST['voterId'];
-    if(vote($voteeId, $voterId)){
-        $_SESSION['message'] = "Vote successful";
+    } elseif (isset($_POST['logout'])) {
+        logout();
+    } elseif (isset($_POST['vote'])) {
+        $voteeId = $_POST['idnumber'] ?? null;
+        $voterId = $_POST['voterId'] ?? null;
+        if (vote($voteeId, $voterId)) {
+            $_SESSION['message'] = "Vote successful";
+        } else {
+            $_SESSION['message'] = "Sorry, you have already voted";
+        }
         header("Location: ../dashboard.php");
-    }else{
-        $_SESSION['message'] = "Sorry you have already voted";
-        header("Location: ../dashboard.php");
+        exit();
+    } else {
+        echo "You missed the form";
     }
 }
-
-
-else{
-    echo "You missed the form";
-}
+?>
