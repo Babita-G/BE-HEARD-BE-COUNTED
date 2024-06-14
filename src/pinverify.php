@@ -1,4 +1,8 @@
+
 <?php
+require __DIR__ . '/../phpmailer/vendor/autoload.php';
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
