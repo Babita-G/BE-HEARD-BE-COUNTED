@@ -5,7 +5,7 @@
     
     <title>login</title>
     
-    <link rel="stylesheet" href="BE HEARD BE COUNTED/assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
    
 </head>
 <body>
