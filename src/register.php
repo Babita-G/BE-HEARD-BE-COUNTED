@@ -5,14 +5,10 @@
     
     <title>login</title>
     
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="BE HEARD BE COUNTED/assets/css/style.css">
+   
 </head>
 <body>
-
-    
-              <a class="nav-link" href="login.php">Login</a>
-              <!-- <a class="nav-link" href="src/register.php">Register</a> -->
-            
 
       <section class="bg-image">
         <div class="icon">
@@ -32,7 +28,7 @@
                                     </div>
                                     <div class="form">
                                         <input type="text" id="typeEmailX" class="form-control form-control-lg"  placeholder="Last Names" name="lastname" required />
-                                        >
+                                        
                                     </div>
                                     <div class="form">
                                         <input type="email" id="typeEmailX" class="form-control form-control-lg"  placeholder="email@example.com" name="email" required />

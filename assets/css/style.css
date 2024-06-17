@@ -1,52 +1,35 @@
-body{
-    background-color: #6DB3F2; 
-    background-image: url("../image/vote.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+body, html {
     height: 100%;
-}
-
-#form-card{
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-    padding: 20px;
-    width: 100%;
-    max-height: 600px;
-    margin: 0 auto;
-    margin-top: 50px;
-}
-
-#button-section{
-    margin-top: 20px;
-    margin-bottom: 5%;
-    justify-content: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(211, 77%, 64%);
 }
-
-.register{
-    background-color: #6DB3F2;
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+.form {
+    margin-bottom: 15px;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+.btn {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 20px;
-    text-decoration: none;
-    text-transform: uppercase;
     cursor: pointer;
-    margin: 0 10px;
-}
-
-.login{
-    background-color: #6DB3F2;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin: 0 10px;
 }
 

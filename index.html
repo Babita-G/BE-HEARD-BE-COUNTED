@@ -3,6 +3,42 @@
 <head>
     <title>Voting</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: hsl(211, 77%, 64%);
+        }
+        
+        .card-body {
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        #button-section {
+            margin-top: 20px;
+        }
+         .register, .login {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: hsl(211, 77%, 58%);
+            border-radius: 5px;
+        }
+        .register:hover, .login:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <section class="bg-image">
@@ -12,12 +48,12 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="text-center">Welcome to the Voting System</h1>
+                                <h1 class="text-center">Welcome to the Voting System</h1><br><br>
                                 <p class="vote">
-                                    <b>This is a simple voting system that allows users to vote for their preferred candidate.</b>
+                                   <b> <b>This is a simple voting system that allows users to vote for their preferred candidate.</b></b>
                                 </p>
                                 <p class="register1">
-                                    <b>To vote, you must first register and login.</b>
+                                   <b> <b>To vote, you must first register and login.</b></b>
                                 </p>
                             </div>
                             <div class="row" id="button-section">

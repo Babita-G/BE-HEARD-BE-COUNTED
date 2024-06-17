@@ -1,5 +1,6 @@
 <?php session_start(); 
-include_once './backend/logic.php';
+include_once '../backend/logic.php';
+
 
 $contestants = getContestants();
 
@@ -21,7 +22,7 @@ $contestants = getContestants();
          }
     </style>
    
-}
+
 </head>
 <body>
 

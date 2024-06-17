@@ -6,22 +6,42 @@
     <title>login</title>
    
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: hsl(211, 77%, 64%);
+        }
+        .card {
+            width: 100%;
+            max-width: 700px;
+            padding: 80px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+        }
+         .card-body {
+            padding: 20px;
+        } 
+        .form {
+            margin-bottom: 20px;
+        }
+        .login {
+            width: 100%;
+            padding: 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-         
-         
-          <div class="collapse navbar" id="nav">
-            <div class="nav">
-              <a class="nav-link" href="register.php">Register</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-    <!-- login -->
     <section class="bg-image">
         <div class="icon">
             <div class="users">
